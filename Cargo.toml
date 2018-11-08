@@ -1,0 +1,7 @@
+[package]
+name = "vmenu"
+version = "0.1.0"
+authors = ["Conrad Lukawski <conrad@backlight.ca>"]
+
+[dependencies]
+getopts = "0.2"
