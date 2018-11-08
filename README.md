@@ -7,6 +7,7 @@ Small filepath list generator primarily for use with dmenu, written in Rust.
 ### Requirements
 
 - [rust, cargo](https://rustup.rs)
+- [dmenu](https://tools.suckless.org/dmenu/), or similar tool like [rofi](https://github.com/DaveDavenport/rofi)
 
 ### Build
 
