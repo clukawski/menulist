@@ -17,6 +17,14 @@ $ cd menulist
 $ cargo build --release
 ```
 
+### Test
+
+Optionally `RUST_BACKTRACE=` can be used to see a backtrace of failed tests.
+
+```
+$ cargo test
+```
+
 The binary can be found in `./target/release/menulist`.
 
 ### Usage

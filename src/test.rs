@@ -7,31 +7,32 @@ fn expand_output_test() -> io::Result<()> {
         let exts = vec!["txt", "csv"];
         let mut output = String::new();
 
-        let _generated =
-            menu::expand_path(Some(String::from("/tmp/vmenu_test/")), &exts, &mut output);
+        let _generated = menu::expand_path(
+            Some(String::from("/tmp/menulist_test/")),
+            &exts,
+            &mut output,
+        );
 
         // We're not looking for .mp4 files
-        assert_eq!(output.find("/tmp/vmenu_test/test.mp4"), None);
+        assert_eq!(output.find("/tmp/menulist_test/test.mp4"), None);
         // Ensure output is as expected (newer files first)
-        assert_eq!("/tmp/vmenu_test/newer.csv\n/tmp/vmenu_test/test.csv\n/tmp/vmenu_test/test.txt\n/tmp/vmenu_test/2/test2.txt", output.trim());
+        assert_eq!("/tmp/menulist_test/newer.csv\n/tmp/menulist_test/test.csv\n/tmp/menulist_test/test.txt", output.trim());
         Ok(())
     })
 }
 
 fn setup() -> io::Result<()> {
-    fs::create_dir("/tmp/vmenu_test/")?;
-    fs::create_dir("/tmp/vmenu_test/2/")?;
+    fs::create_dir("/tmp/menulist_test/")?;
     // Open a file in write-only mode, returns `io::Result<File>`
-    fs::File::create("/tmp/vmenu_test/test.txt")?;
-    fs::File::create("/tmp/vmenu_test/test.csv")?;
-    fs::File::create("/tmp/vmenu_test/newer.csv")?;
-    fs::File::create("/tmp/vmenu_test/test.mp4")?; // This file won't be listed
-    fs::File::create("/tmp/vmenu_test/2/test2.txt")?;
+    fs::File::create("/tmp/menulist_test/test.txt")?;
+    fs::File::create("/tmp/menulist_test/test.csv")?;
+    fs::File::create("/tmp/menulist_test/newer.csv")?;
+    fs::File::create("/tmp/menulist_test/test.mp4")?; // This file won't be listed
     Ok(())
 }
 
 fn teardown() -> io::Result<()> {
-    fs::remove_dir_all("/tmp/vmenu_test/")?;
+    fs::remove_dir_all("/tmp/menulist_test/")?;
     Ok(())
 }
 
