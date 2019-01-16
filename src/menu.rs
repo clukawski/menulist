@@ -39,8 +39,8 @@ pub fn expand_path(
 
     // Sort by timestamp and append to output
     //    file_vec.sort_by_key(|ref k| k.0);
-    file_vec.sort_by(|x, y| x.0.cmp(&y.0));
-    for file in file_vec {
+    file_vec.sort_unstable_by(|x, y| x.0.cmp(&y.0));
+    for file in file_vec.iter() {
         output.push_str(file.1.as_str());
         output.push_str("\n");
     }
