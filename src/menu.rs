@@ -32,6 +32,7 @@ pub fn expand_path(
         let mut new_file: Vec<(u64, String)> = vec![(ts, String::from(dir_file))];
         file_vec.append(&mut new_file);
     }
+    let mut count = 0;
     if let Ok(paths) = fs::read_dir(canon_path) {
         for cur_path in paths {
             if let Ok(cur_path) = cur_path {
@@ -44,6 +45,7 @@ pub fn expand_path(
                     if file_type.is_file() && ends_with(cur_file, &exts) {
                         let mut new_file: Vec<(u64, String)> = vec![(ts, String::from(cur_file))];
                         file_vec.append(&mut new_file);
+                        count += 1;
                     // file_map.insert(ts, String::from(cur_file));
                     } else if file_type.is_dir() {
                         expand_path(Some(String::from(cur_file)), exts, output.clone())?;
@@ -53,6 +55,9 @@ pub fn expand_path(
         }
     }
 
+    if exts.len() != 1 && exts.contains(&super::INCLUDE_DIRS) && count == 0 {
+        file_vec.drain(0..1);
+    }
     // Sort by timestamp and append to output
     //    file_vec.sort_by_key(|ref k| k.0);
     file_vec.sort_unstable_by(|x, y| {
