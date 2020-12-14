@@ -32,15 +32,26 @@ The binary can be found in `./target/release/menulist`.
 Help
 
 ```
-Usage: target/release/menulist FOLDER [options]
+Usage: menulist FOLDER [options]
+
+Files/directories sorted by modification time.
 
 Options:
     -e EXTENSION        specify file extension to filter
+    -d, --dirs          include dirs
     -h, --help          print this help menu
 ```
 
-Sample usage, getting a list of `.pls` playlist files to open with mpv
+#### Sample usage
+
+Getting a list of `.mp4` files to open with mpv
 
 ```
-$ mpv `(./target/release/menulist -e pls /mnt/storage/music/ | dmenu -i -l 25 -fn "xos4 Terminus-16")`
+$ mpv `(./target/release/menulist -e mp4 /mnt/storage/music/ | dmenu -i -l 25 -fn "xos4 Terminus-16")`
+```
+
+Getting a list of `.mp4` files and directories to open with mpv (mpv supports using folders as playlists)
+
+```
+$ mpv `(./target/release/menulist -d -e mp4 /mnt/storage/music/ | dmenu -i -l 25 -fn "xos4 Terminus-16")`
 ```

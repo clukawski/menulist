@@ -5,3 +5,4 @@ authors = ["Conrad Lukawski <conrad@backlight.ca>"]
 
 [dependencies]
 getopts = "0.2"
+parking_lot = "0.11.1"
